@@ -1,0 +1,10 @@
+<h1>Users</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.email %> &mdash; created <%= time_ago_in_words(user.created_at) %> ago</li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Create another user", new_user_path %></p>
+<p><a href="/sidekiq" target="_blank">Open Sidekiq dashboard</a></p>
