@@ -13,6 +13,8 @@ class UsersController < ApplicationController
       # work off to Sidekiq. Rails serializes the arguments,
       # pushes a job payload into Redis, and returns immediately.
       WelcomeEmailJob.perform_later(@user.id)
+      # Kafka portion
+      EventPublisher.user_created(@user)
 
       redirect_to users_path, notice: "User created! A welcome email job was enqueued for #{@user.email}."
     else
@@ -27,6 +29,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :name)
   end
 end

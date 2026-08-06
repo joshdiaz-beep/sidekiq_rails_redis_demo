@@ -7,6 +7,8 @@ gem "pg"
 gem "puma"
 gem "sidekiq"
 gem "redis"
+gem "delivery_boy"
+gem "racecar"
 gem "bootsnap", require: false
 
 group :development do
